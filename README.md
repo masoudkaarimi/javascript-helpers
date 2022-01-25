@@ -3,7 +3,7 @@ Here are some commonly used functions you may use throughout the project
 
 
 ## Format File Size
-
+ 
 ```js
 function formatFileSize(bytes, decimalPoint) {
 	if (bytes == 0) return '0 Bytes';
