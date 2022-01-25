@@ -1,0 +1,12 @@
+<style>
+	/* Replace `8` with configured repository setting */
+	:root{
+		--tab-size: 8;
+	}
+
+	/* Add any other selectors styled with `white-space: pre;` */
+	.blob-code-inner, pre, code, tt {
+		-moz-tab-size: var(--tab-size);
+		tab-size:      var(--tab-size);
+	}
+</style>
