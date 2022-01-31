@@ -3,7 +3,7 @@
 Here are some commonly used functions you may use throughout the project
 
 ## Format File Size
- 
+
 ```js
 function formatFileSize(bytes, decimalPoint) {
     if (bytes == 0) return '0 Bytes';
@@ -68,6 +68,34 @@ separatorWithComma(100000000)  // '100,000,000'
 
 const number = 10000000.25;
 console.log(number.toLocaleString()); // 10,000,000.25
+```
+
+## Convert Enter (\n) characters to lists
+
+```js
+const convertEnterToList = (text) => {
+    if (text.match(/\n/) && !text.includes('<ul')) {
+        let listText = text.split('\n');
+        let list = '';
+
+        for (let i = 0; i < listText.length; i++) {
+            if (listText[i] != '') {
+                list += `<li>${listText[i]}</li>`;
+            }
+        }
+        return `<ul>${list}</ul>`;
+    } else {
+        return `<span>${text}</span>`;
+    }
+};
+
+convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
+// <ul>
+    // <li>High quality</li>
+    // <li>The best</li>
+    // <li>Awesome</li>
+    // <li>Wonderful</li>
+// </ul>
 ```
 
 # Add in the future
