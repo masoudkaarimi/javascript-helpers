@@ -91,12 +91,47 @@ const convertEnterToList = (text) => {
 
 convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
 // <ul>
-    // <li>High quality</li>
-    // <li>The best</li>
-    // <li>Awesome</li>
-    // <li>Wonderful</li>
+// <li>High quality</li>
+// <li>The best</li>
+// <li>Awesome</li>
+// <li>Wonderful</li>
 // </ul>
 ```
+
+```js
+const timerCounter = (duration) => {
+    let timer = parseInt(duration);
+    let minutes, seconds;
+    
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        console.log(minutes + ':' + seconds);
+
+        if (--timer < 0) {
+            timer = 0;
+        }
+    }, 1000);
+};
+```
+
+## Find the day of the year
+```js
+const getDayOfYear = (date) => {
+    return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24)
+}
+
+getDayOfYear(new Date('2022-02-02')) // 33
+getDayOfYear(new Date('2001-10-26')) // 299
+getDayOfYear(new Date('2022-12-31')) // 365
+
+```
+
+
 
 # Add in the future
 
