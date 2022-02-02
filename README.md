@@ -102,7 +102,7 @@ convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
 const timerCounter = (duration) => {
     let timer = parseInt(duration);
     let minutes, seconds;
-    
+
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
@@ -120,6 +120,7 @@ const timerCounter = (duration) => {
 ```
 
 ## Find the day of the year
+
 ```js
 const getDayOfYear = (date) => {
     return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24)
@@ -131,7 +132,14 @@ getDayOfYear(new Date('2022-12-31')) // 365
 
 ```
 
+##  Date validity test
 
+```js
+const isDateValid = (...value) => !Number.isNaN(new Date(...value).valueOf())
+
+isDateValid("Wed Feb 02 2022 09:49:38") // true
+isDateValid("Wed Fd 02 2022 09:49:38") // false
+```
 
 # Add in the future
 
