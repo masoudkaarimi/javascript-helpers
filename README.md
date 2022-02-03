@@ -132,7 +132,7 @@ getDayOfYear(new Date('2022-12-31')) // 365
 
 ```
 
-##  Date validity test
+## Date validity test
 
 ```js
 const isDateValid = (...value) => !Number.isNaN(new Date(...value).valueOf())
@@ -140,6 +140,19 @@ const isDateValid = (...value) => !Number.isNaN(new Date(...value).valueOf())
 isDateValid("Wed Feb 02 2022 09:49:38") // true
 isDateValid("Wed Fd 02 2022 09:49:38") // false
 ```
+
+
+## Find the number of days between two dates
+
+```js
+const getDayDifference = (date1, date2) => {
+    return Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
+}
+
+getDayDifference(new Date("2001-10-26"), new Date("2022-10-26")) // 7670
+getDayDifference(new Date("2022-1-1"), new Date("2022-2-1")) // 31
+```
+
 
 # Add in the future
 
