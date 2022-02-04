@@ -161,7 +161,12 @@ const randomHEXCode = () => `#${Math.floor(Math.random() * 0xfffffff).toString(1
 randomHEXCode() // #...
 ```
 
+# The average of numbers calculation
+```js
+const average = (...args) => (args.reduce((a, b) => a + b) / args.length).toFixed(2)
 
+average(15, 20, 18, 10, 12) // '15.00'
+```
 
 
 # Add in the future
