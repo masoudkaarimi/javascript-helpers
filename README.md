@@ -153,6 +153,16 @@ getDayDifference(new Date("2001-10-26"), new Date("2022-10-26")) // 7670
 getDayDifference(new Date("2022-1-1"), new Date("2022-2-1")) // 31
 ```
 
+## Random HEX code generation
+
+```js
+const randomHEXCode = () => `#${Math.floor(Math.random() * 0xfffffff).toString(16).padEnd(6, '0')}`
+
+randomHEXCode() // #...
+```
+
+
+
 
 # Add in the future
 
