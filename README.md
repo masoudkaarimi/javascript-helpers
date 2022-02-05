@@ -11,6 +11,7 @@ Here are some commonly used functions you may use throughout the project
 - [Find the number of days between two dates](#find-the-number-of-days-between-two-dates)
 - [Random HEX code generation](#random-hex-code-generation)
 - [The average of numbers calculation](#the-average-of-numbers-calculation)
+- [Get selected text](#get-selected-text)
 
 
 ## Format file size
