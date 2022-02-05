@@ -2,7 +2,18 @@
 
 Here are some commonly used functions you may use throughout the project
 
-## Format File Size
+# Table of contents
+- [Format File Size](#format-file-size)
+- [Comma separator in the form of thousands](#comma-separator-in-the-form-of-thousands)
+- [Convert Enter (\n) characters to lists](#convert-enter-n-characters-to-lists)
+- [Find the day of the year](#find-the-day-of-the-year)
+- [Date validity test](#date-validity-test)
+- [Find the number of days between two dates](#find-the-number-of-days-between-two-dates)
+- [Random HEX code generation](#random-hex-code-generation)
+- [The average of numbers calculation](#the-average-of-numbers-calculation)
+
+
+## Format file size
 
 ```js
 function formatFileSize(bytes, decimalPoint) {
@@ -20,6 +31,8 @@ console.log(formatFileSize(1220000)); // 1.22 MB);
 console.log(formatFileSize(4250000000)); // 4.25 GB);
 console.log(formatFileSize(1500000000000)); // 1.5 TB);
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## Comma separator in the form of thousands
 
@@ -70,7 +83,9 @@ const number = 10000000.25;
 console.log(number.toLocaleString()); // 10,000,000.25
 ```
 
-## Convert Enter (\n) characters to lists
+**[⬆ back to top](#table-of-contents)**
+
+## Convert enter (\n) characters to lists
 
 ```js
 const convertEnterToList = (text) => {
@@ -119,6 +134,8 @@ const timerCounter = (duration) => {
 };
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Find the day of the year
 
 ```js
@@ -132,6 +149,8 @@ getDayOfYear(new Date('2022-12-31')) // 365
 
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Date validity test
 
 ```js
@@ -141,6 +160,7 @@ isDateValid("Wed Feb 02 2022 09:49:38") // true
 isDateValid("Wed Fd 02 2022 09:49:38") // false
 ```
 
+**[⬆ back to top](#table-of-contents)**
 
 ## Find the number of days between two dates
 
@@ -153,6 +173,8 @@ getDayDifference(new Date("2001-10-26"), new Date("2022-10-26")) // 7670
 getDayDifference(new Date("2022-1-1"), new Date("2022-2-1")) // 31
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 ## Random HEX code generation
 
 ```js
@@ -160,6 +182,8 @@ const randomHEXCode = () => `#${Math.floor(Math.random() * 0xfffffff).toString(1
 
 randomHEXCode() // #...
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ## The average of numbers calculation
 
@@ -169,6 +193,7 @@ const average = (...args) => (args.reduce((a, b) => a + b) / args.length).toFixe
 average(15, 20, 18, 10, 12) // '15.00'
 ```
 
+**[⬆ back to top](#table-of-contents)**
 
 # Add in the future
 
