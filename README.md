@@ -195,6 +195,16 @@ average(15, 20, 18, 10, 12) // '15.00'
 
 **[⬆ back to top](#table-of-contents)**
 
+## Get selected text
+
+```js
+const getSelectedText = () => window.getSelection().toString()
+
+getSelectedText() // 'Selected text'
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 # Add in the future
 
 - localStorage
