@@ -3,16 +3,18 @@
 Here are some commonly used functions you may use throughout the project
 
 # Table of contents
+
 - [Format File Size](#format-file-size)
 - [Comma separator in the form of thousands](#comma-separator-in-the-form-of-thousands)
 - [Convert Enter (\n) characters to lists](#convert-enter-n-characters-to-lists)
+- [Timer counter](#timer-counter)
 - [Find the day of the year](#find-the-day-of-the-year)
 - [Date validity test](#date-validity-test)
 - [Find the number of days between two dates](#find-the-number-of-days-between-two-dates)
 - [Random HEX code generation](#random-hex-code-generation)
 - [The average of numbers calculation](#the-average-of-numbers-calculation)
 - [Get selected text](#get-selected-text)
-
+- [Is prime numbers](#is-prime-numbers)
 
 ## Format file size
 
@@ -106,20 +108,25 @@ const convertEnterToList = (text) => {
 };
 
 convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
-// <ul>
-// <li>High quality</li>
-// <li>The best</li>
-// <li>Awesome</li>
-// <li>Wonderful</li>
-// </ul>
+/*
+    <ul>
+        <li>High quality</li>
+        <li>The best</li>
+        <li>Awesome</li>
+        <li>Wonderful</li>
+    </ul>
+*/
+
 ```
+
+## Timer counter
 
 ```js
 const timerCounter = (duration) => {
     let timer = parseInt(duration);
     let minutes, seconds;
 
-    setInterval(function () {
+    let interval = setInterval(() => {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -130,9 +137,21 @@ const timerCounter = (duration) => {
 
         if (--timer < 0) {
             timer = 0;
+            clearInterval(interval)
         }
-    }, 1000);
+    }, 5);
 };
+
+// Duration per second
+timerCounter(5) // Result
+/*
+* 00:05
+* 00:04
+* 00:03
+* 00:02
+* 00:01
+* 00:00
+*/
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -202,6 +221,25 @@ average(15, 20, 18, 10, 12) // '15.00'
 const getSelectedText = () => window.getSelection().toString()
 
 getSelectedText() // 'Selected text'
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Is prime numbers
+
+```js
+const showPrimes = (limit) => {
+    for (let number = 2; number <= limit; number++)
+        if (isPrime(number)) console.log(number);
+}
+
+const isPrime = (number) => {
+    for (let factor = 2; factor < number; factor++)
+        if (number % factor === 0) return false;
+    return true;
+}
+
+showPrimes(10); // 2, 3, 5, 7
 ```
 
 **[⬆ back to top](#table-of-contents)**
