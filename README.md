@@ -15,6 +15,7 @@ Here are some commonly used functions you may use throughout the project
 - [The average of numbers calculation](#the-average-of-numbers-calculation)
 - [Get selected text](#get-selected-text)
 - [Is prime numbers](#is-prime-numbers)
+- [Reverse-string](#reverse-string)
 
 ## Format file size
 
@@ -243,7 +244,7 @@ showPrimes(10); // 2, 3, 5, 7
 ```
 
 
-# Reverse string
+## Reverse string
 
 ```js
 let str = 'Masoud';
