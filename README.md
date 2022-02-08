@@ -242,6 +242,20 @@ const isPrime = (number) => {
 showPrimes(10); // 2, 3, 5, 7
 ```
 
+
+# Reverse string
+
+```js
+let str = 'Masoud';
+
+let chars = str.split('').reverse().join('').toLowerCase();
+// or
+let chars = [...str].reverse().join('').toLowerCase();
+
+console.log(chars); // duosam
+```
+
+
 **[⬆ back to top](#table-of-contents)**
 
 # Add in the future
