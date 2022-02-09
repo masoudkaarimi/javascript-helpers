@@ -16,7 +16,7 @@ Here are some commonly used functions you may use throughout the project
 - [Get selected text](#get-selected-text)
 - [Is prime numbers](#is-prime-numbers)
 - [Reverse-string](#reverse-string)
-- [Random pin number generator](#random-pin-number-generator)
+- [ Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
 
 ## Format file size
 
@@ -260,7 +260,7 @@ console.log(chars); // duosam
 
 **[⬆ back to top](#table-of-contents)**
 
-## Random pin number generator
+## Random PIN generator (Personal Identification Number)
 
 ```js
 const randomPinNumber = length => {
