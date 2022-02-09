@@ -16,6 +16,7 @@ Here are some commonly used functions you may use throughout the project
 - [Get selected text](#get-selected-text)
 - [Is prime numbers](#is-prime-numbers)
 - [Reverse-string](#reverse-string)
+- [Random pin number generator](#random-pin-number-generator)
 
 ## Format file size
 
@@ -243,6 +244,7 @@ const isPrime = (number) => {
 showPrimes(10); // 2, 3, 5, 7
 ```
 
+**[⬆ back to top](#table-of-contents)**
 
 ## Reverse string
 
@@ -256,6 +258,23 @@ let chars = [...str].reverse().join('').toLowerCase();
 console.log(chars); // duosam
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
+## Random pin number generator
+
+```js
+const randomPinNumber = length => {
+    let pin = ''
+    
+    for (let i = 0; i < length; i++) {
+        pin += Math.floor(Math.random() * 10)
+    }
+
+    return Number(pin)
+}
+
+randomPinNumber(6) // 685837
+```
 
 **[⬆ back to top](#table-of-contents)**
 
