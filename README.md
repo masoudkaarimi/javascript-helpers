@@ -4,7 +4,7 @@ Here are some commonly used functions you may use throughout the project
 
 # Table of contents
 
-- [Format File Size](#format-file-size)
+- [Format file size](#format-file-size)
 - [Comma separator in the form of thousands](#comma-separator-in-the-form-of-thousands)
 - [Convert Enter (\n) characters to lists](#convert-enter-n-characters-to-lists)
 - [Timer counter](#timer-counter)
@@ -16,25 +16,26 @@ Here are some commonly used functions you may use throughout the project
 - [Get selected text](#get-selected-text)
 - [Is prime numbers](#is-prime-numbers)
 - [Reverse-string](#reverse-string)
-- [ Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
+- [Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
+- [Copy to clipboard)](#copy-to-clipboard)
 
 ## Format file size
 
 ```js
 function formatFileSize(bytes, decimalPoint) {
-    if (bytes == 0) return '0 Bytes';
+    if (bytes == 0) return '0 Bytes'
     let k = 1000,
         dm = decimalPoint || 2,
         sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-        i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        i = Math.floor(Math.log(bytes) / Math.log(k))
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
-console.log(formatFileSize(2)); // 2 Bytes
-console.log(formatFileSize(2234)); // 2.23 KB);
-console.log(formatFileSize(1220000)); // 1.22 MB);
-console.log(formatFileSize(4250000000)); // 4.25 GB);
-console.log(formatFileSize(1500000000000)); // 1.5 TB);
+console.log(formatFileSize(2)) // 2 Bytes
+console.log(formatFileSize(2234)) // 2.23 KB
+console.log(formatFileSize(1220000)) // 1.22 MB
+console.log(formatFileSize(4250000000)) // 4.25 GB
+console.log(formatFileSize(1500000000000)) // 1.5 TB
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -43,20 +44,20 @@ console.log(formatFileSize(1500000000000)); // 1.5 TB);
 
 ```js
 const separatorWithComma = (Number) => {
-    Number += '';
-    Number = Number.replace(',', '');
-    Number = Number.replace(',', '');
-    Number = Number.replace(',', '');
-    Number = Number.replace(',', '');
-    Number = Number.replace(',', '');
-    Number = Number.replace(',', '');
-    let x = Number.split('.');
-    let y = x[0];
-    let z = x.length > 1 ? '.' + x[1] : '';
-    let rgx = /(\d+)(\d{3})/;
-    while (rgx.test(y)) y = y.replace(rgx, '$1' + ',' + '$2');
-    return y + z;
-};
+    Number += ''
+    Number = Number.replace(',', '')
+    Number = Number.replace(',', '')
+    Number = Number.replace(',', '')
+    Number = Number.replace(',', '')
+    Number = Number.replace(',', '')
+    Number = Number.replace(',', '')
+    let x = Number.split('.')
+    let y = x[0]
+    let z = x.length > 1 ? '.' + x[1] : ''
+    let rgx = /(\d+)(\d{3})/
+    while (rgx.test(y)) y = y.replace(rgx, '$1' + ',' + '$2')
+    return y + z
+}
 
 separatorWithComma(0)          // '0'
 separatorWithComma(100)        // '100'
@@ -70,7 +71,7 @@ separatorWithComma(100000000)  // '100,000,000'
 // or
 
 const separatorWithComma = (x) => {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 }
 
 separatorWithComma(0)          // '0'
@@ -84,8 +85,8 @@ separatorWithComma(100000000)  // '100,000,000'
 
 // or 
 
-const number = 10000000.25;
-console.log(number.toLocaleString()); // 10,000,000.25
+const number = 10000000.25
+console.log(number.toLocaleString()) // 10,000,000.25
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -95,17 +96,17 @@ console.log(number.toLocaleString()); // 10,000,000.25
 ```js
 const convertEnterToList = (text) => {
     if (text.match(/\n/) && !text.includes('<ul')) {
-        let listText = text.split('\n');
-        let list = '';
+        let listText = text.split('\n')
+        let list = ''
 
         for (let i = 0; i < listText.length; i++) {
             if (listText[i] != '') {
-                list += `<li>${listText[i]}</li>`;
+                list += `<li>${listText[i]}</li>`
             }
         }
-        return `<ul>${list}</ul>`;
+        return `<ul>${list}</ul>`
     } else {
-        return `<span>${text}</span>`;
+        return `<span>${text}</span>`
     }
 };
 
@@ -125,24 +126,24 @@ convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
 
 ```js
 const timerCounter = (duration) => {
-    let timer = parseInt(duration);
-    let minutes, seconds;
+    let timer = parseInt(duration)
+    let minutes, seconds
 
     let interval = setInterval(() => {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10)
 
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+        minutes = minutes < 10 ? '0' + minutes : minutes
+        seconds = seconds < 10 ? '0' + seconds : seconds
 
-        console.log(minutes + ':' + seconds);
+        console.log(minutes + ':' + seconds)
 
         if (--timer < 0) {
-            timer = 0;
+            timer = 0
             clearInterval(interval)
         }
-    }, 5);
-};
+    }, 1000)
+}
 
 // Duration per second
 timerCounter(5) // Result
@@ -232,16 +233,16 @@ getSelectedText() // 'Selected text'
 ```js
 const showPrimes = (limit) => {
     for (let number = 2; number <= limit; number++)
-        if (isPrime(number)) console.log(number);
+        if (isPrime(number)) console.log(number)
 }
 
 const isPrime = (number) => {
     for (let factor = 2; factor < number; factor++)
-        if (number % factor === 0) return false;
-    return true;
+        if (number % factor === 0) return false
+    return true
 }
 
-showPrimes(10); // 2, 3, 5, 7
+showPrimes(10) // 2, 3, 5, 7
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -249,13 +250,13 @@ showPrimes(10); // 2, 3, 5, 7
 ## Reverse string
 
 ```js
-let str = 'Masoud';
+let str = 'Masoud'
 
-let chars = str.split('').reverse().join('').toLowerCase();
+let chars = str.split('').reverse().join('').toLowerCase()
 // or
-let chars = [...str].reverse().join('').toLowerCase();
+let chars = [...str].reverse().join('').toLowerCase()
 
-console.log(chars); // duosam
+console.log(chars) // duosam
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -265,7 +266,7 @@ console.log(chars); // duosam
 ```js
 const randomPinNumber = length => {
     let pin = ''
-    
+
     for (let i = 0; i < length; i++) {
         pin += Math.floor(Math.random() * 10)
     }
@@ -278,10 +279,21 @@ randomPinNumber(6) // 685837
 
 **[⬆ back to top](#table-of-contents)**
 
-# Add in the future
+## Copy to clipboard
 
-- localStorage
-- API instance
-- CSRF Token
-- File Size Units
-- Cookie
+```js
+const copyToClipboard = (text) => {
+    let elem = document.createElement('textarea')
+    elem.textContent = text
+    document.body.append(elem)
+    elem.select()
+    document.execCommand('copy')
+    elem.remove()
+    console.log(`\"${text}\" successfully copied`)
+}
+
+copyToClipboard('Copy me') // "Copy me" successfully copied
+```
+
+**[⬆ back to top](#table-of-contents)**
+
