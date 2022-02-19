@@ -7,7 +7,8 @@ Here are some commonly used functions you may use throughout the project
 - [Format file size](#format-file-size)
 - [Comma separator in the form of thousands](#comma-separator-in-the-form-of-thousands)
 - [Convert Enter (\n) characters to lists](#convert-enter-n-characters-to-lists)
-- [Timer counter](#timer-counter)
+- [Timer](#timer)
+- [Timer by units](#timer-by-units)
 - [Find the day of the year](#find-the-day-of-the-year)
 - [Date validity test](#date-validity-test)
 - [Find the number of days between two dates](#find-the-number-of-days-between-two-dates)
@@ -108,7 +109,7 @@ const convertEnterToList = (text) => {
     } else {
         return `<span>${text}</span>`
     }
-};
+}
 
 convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
 /*
@@ -122,10 +123,12 @@ convertEnterToList('High quality\nThe best\nAwesome\nWonderful') // Result
 
 ```
 
-## Timer counter
+**[⬆ back to top](#table-of-contents)**
+
+## Timer
 
 ```js
-const timerCounter = (duration) => {
+const timer = (duration) => {
     let timer = parseInt(duration)
     let minutes, seconds
 
@@ -146,7 +149,7 @@ const timerCounter = (duration) => {
 }
 
 // Duration per second
-timerCounter(5) // Result
+timer(5) // Result
 /*
 * 00:05
 * 00:04
@@ -154,6 +157,94 @@ timerCounter(5) // Result
 * 00:02
 * 00:01
 * 00:00
+*/
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Timer by units
+
+```js
+let interval
+
+const showTime = (value, unit) => {
+    if (value > 1) console.log(`${value} ${unit}s`)
+    else console.log(`${value} ${unit}`)
+}
+
+const timerByUnits = () => {
+    let counter = 1,
+        second = 1,
+        minute = 0,
+        hour = 0,
+        day = 0,
+        week = 0,
+        month = 0,
+        year = 0,
+        unit = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year']
+    // unit = ['ثانیه', 'دقیقه', 'ساعت', 'روز', 'هفته', 'ماه', 'سال']
+
+    // Reset Timer
+    clearInterval(interval)
+    showTime(1, unit[0])
+
+    interval = setInterval(() => {
+        counter++
+        second = Math.floor(counter / 60)
+        minute = Math.floor(counter / 60)
+        hour = Math.floor(minute / 60)
+        day = Math.floor(hour / 24)
+        week = Math.floor(day / 7)
+        month = Math.floor(week / 4)
+        year = Math.floor(month / 12)
+
+        if (second <= 0) {
+            showTime(counter, unit[0])
+
+        } else if (minute >= 1 && minute < 60) {
+            showTime(minute, unit[1])
+
+        } else if (hour >= 1 && hour < 24) {
+            showTime(hour, unit[2])
+
+        } else if (day >= 1 && day < 7) {
+            showTime(day, unit[3])
+
+        } else if (week >= 1 && week < 4) {
+            showTime(week, unit[4])
+
+        } else if (month >= 1 && month < 12) {
+            showTime(month, unit[5])
+
+        } else if (year >= 1) {
+            showTime(year, unit[6])
+        }
+    }, 1000)
+}
+
+timerByUnits() // Result
+/*
+* 1 second
+* 2 seconds
+* ...
+* 1 minute
+* 2 minutes
+* ...
+* 1 hour
+* 2 hours
+* ...
+* 1 day
+* 2 days
+* ...
+* 1 week
+* 2 weeks
+* ...
+* 1 month
+* 2 months
+* ...
+* 1 year
+* 2 years
+* ...
 */
 ```
 
