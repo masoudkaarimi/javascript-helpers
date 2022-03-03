@@ -12,13 +12,14 @@ Here are some commonly used functions you may use throughout the project
 - [Find the day of the year](#find-the-day-of-the-year)
 - [Date validity test](#date-validity-test)
 - [Find the number of days between two dates](#find-the-number-of-days-between-two-dates)
+- [Unix time](#unix-time)
 - [Random HEX code generation](#random-hex-code-generation)
 - [The average of numbers calculation](#the-average-of-numbers-calculation)
 - [Get selected text](#get-selected-text)
 - [Is prime numbers](#is-prime-numbers)
 - [Reverse-string](#reverse-string)
 - [Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
-- [Copy to clipboard)](#copy-to-clipboard)
+- [Copy to clipboard](#copy-to-clipboard)
 
 ## Format file size
 
@@ -285,6 +286,25 @@ const getDayDifference = (date1, date2) => {
 
 getDayDifference(new Date("2001-10-26"), new Date("2022-10-26")) // 7670
 getDayDifference(new Date("2022-1-1"), new Date("2022-2-1")) // 31
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## Unix time
+
+```js
+// Get unix time
+const getUnixTime = (date) => {
+    if (date)
+        return Math.floor(date / 1000.0)
+    else
+        return Math.floor(Date.now() / 1000.0)
+}
+
+getUnixTime(new Date("2022-1-1")) // 1640982600
+getUnixTime(new Date.now()) // 1646319520
+getUnixTime() // 1646319559
 ```
 
 **[⬆ back to top](#table-of-contents)**
