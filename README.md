@@ -305,6 +305,14 @@ const getUnixTime = (date) => {
 getUnixTime(new Date("2022-1-1")) // 1640982600
 getUnixTime(new Date.now()) // 1646319520
 getUnixTime() // 1646319559
+
+
+// Unix time to date 
+const unixTimeToDate = (unix_time) => {
+    return new Date(Math.floor(unix_time * 1000))
+}
+
+unixTimeToDate(1646319559) // Thu Mar 03 2022 18:29:19 GMT+0330 (Iran Standard Time)
 ```
 
 **[⬆ back to top](#table-of-contents)**
