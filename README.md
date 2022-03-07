@@ -20,6 +20,7 @@ Here are some commonly used functions you may use throughout the project
 - [Reverse-string](#reverse-string)
 - [Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
 - [Copy to clipboard](#copy-to-clipboard)
+- [Limit string to character](#limit-string-to-character)
 
 ## Format file size
 
@@ -417,7 +418,7 @@ copyToClipboard('Copy me') // "Copy me" successfully copied
 
 **[⬆ back to top](#table-of-contents)**
 
-## limit String To Character
+## Limit string to character 
 
 ```js
 const limitStringToCharacter  = ({char, limit = 20}) => {
