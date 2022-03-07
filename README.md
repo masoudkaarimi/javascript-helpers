@@ -290,7 +290,6 @@ getDayDifference(new Date("2022-1-1"), new Date("2022-2-1")) // 31
 
 **[⬆ back to top](#table-of-contents)**
 
-
 ## Unix time
 
 ```js
@@ -305,6 +304,7 @@ const getUnixTime = (date) => {
 getUnixTime(new Date("2022-1-1")) // 1640982600
 getUnixTime(new Date.now()) // 1646319520
 getUnixTime() // 1646319559
+
 
 
 // Unix time to date 
@@ -412,6 +412,20 @@ const copyToClipboard = (text) => {
 }
 
 copyToClipboard('Copy me') // "Copy me" successfully copied
+```
+
+
+**[⬆ back to top](#table-of-contents)**
+
+## limit String To Character
+
+```js
+const limitStringToCharacter  = ({char, limit = 20}) => {
+    if (char.length >= limit) return  char.substring(0, limit) + '...'
+    return char
+}
+
+limitStringToCharacter({char: "Hi ther I'm Masoud Karimi", limit: 15}) // "Hi ther I'm Mas..."
 ```
 
 **[⬆ back to top](#table-of-contents)**
