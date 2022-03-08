@@ -5,7 +5,7 @@ Here are some commonly used functions you may use throughout the project
 # Table of contents
 
 - [Format file size](#format-file-size)
-- [Comma separator in the form of thousands](#comma-separator-in-the-form-of-thousands)
+- [Number separator by comma](#number-separator-by-comma)
 - [Convert Enter (\n) characters to lists](#convert-enter-n-characters-to-lists)
 - [Timer](#timer)
 - [Timer by units](#timer-by-units)
@@ -43,10 +43,10 @@ console.log(formatFileSize(1500000000000)) // 1.5 TB
 
 **[⬆ back to top](#table-of-contents)**
 
-## Comma separator in the form of thousands
+## Number separator by comma
 
 ```js
-const separatorWithComma = (Number) => {
+const numberSeparatorByComma = (Number) => {
     Number += ''
     Number = Number.replace(',', '')
     Number = Number.replace(',', '')
@@ -62,29 +62,29 @@ const separatorWithComma = (Number) => {
     return y + z
 }
 
-separatorWithComma(0)          // '0'
-separatorWithComma(100)        // '100'
-separatorWithComma(1000)       // '1,000'
-separatorWithComma(10000.5)    // '10,000.5'
-separatorWithComma(100000.25)  // '100,000.25'
-separatorWithComma(1000000)    // '1,000,000'
-separatorWithComma(10000000)   // '10,000,000'
-separatorWithComma(100000000)  // '100,000,000'
+numberSeparatorByComma(0)          // '0'
+numberSeparatorByComma(100)        // '100'
+numberSeparatorByComma(1000)       // '1,000'
+numberSeparatorByComma(10000.5)    // '10,000.5'
+numberSeparatorByComma(100000.25)  // '100,000.25'
+numberSeparatorByComma(1000000)    // '1,000,000'
+numberSeparatorByComma(10000000)   // '10,000,000'
+numberSeparatorByComma(100000000)  // '100,000,000'
 
 // or
 
-const separatorWithComma = (x) => {
+const numberSeparatorByComma = (x) => {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
 }
 
-separatorWithComma(0)          // '0'
-separatorWithComma(100)        // '100'
-separatorWithComma(1000)       // '1,000'
-separatorWithComma(10000.5)    // '10,000.5'
-separatorWithComma(100000.25)  // '100,000.25'
-separatorWithComma(1000000)    // '1,000,000'
-separatorWithComma(10000000)   // '10,000,000'
-separatorWithComma(100000000)  // '100,000,000'
+numberSeparatorByComma(0)          // '0'
+numberSeparatorByComma(100)        // '100'
+numberSeparatorByComma(1000)       // '1,000'
+numberSeparatorByComma(10000.5)    // '10,000.5'
+numberSeparatorByComma(100000.25)  // '100,000.25'
+numberSeparatorByComma(1000000)    // '1,000,000'
+numberSeparatorByComma(10000000)   // '10,000,000'
+numberSeparatorByComma(100000000)  // '100,000,000'
 
 // or 
 
