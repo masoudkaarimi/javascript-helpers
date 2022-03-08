@@ -421,12 +421,12 @@ copyToClipboard('Copy me') // "Copy me" successfully copied
 ## Limit string to character 
 
 ```js
-const limitStringToCharacter  = ({char, limit = 20}) => {
-    if (char.length >= limit) return  char.substring(0, limit) + '...'
-    return char
+const limitStringToCharacter  = ({str, limit = 20}) => {
+    if (str.length >= limit) return  str.substring(0, limit) + '...'
+    return str
 }
 
-limitStringToCharacter({char: "Hi ther I'm Masoud Karimi", limit: 15}) // "Hi ther I'm Mas..."
+limitStringToCharacter({str: "Hi ther I'm Masoud Karimi", limit: 15}) // "Hi ther I'm Mas..."
 ```
 
 **[⬆ back to top](#table-of-contents)**
