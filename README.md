@@ -39,6 +39,27 @@ console.log(formatFileSize(2234)) // 2.23 KB
 console.log(formatFileSize(1220000)) // 1.22 MB
 console.log(formatFileSize(4250000000)) // 4.25 GB
 console.log(formatFileSize(1500000000000)) // 1.5 TB
+
+// Or
+
+function humanFileSize(size) {
+    if (size < 1024) return size + ' B'
+    let i = Math.floor(Math.log(size) / Math.log(1024))
+    let num = (size / Math.pow(1024, i))
+    let round = Math.round(num)
+    num = round < 10 ? num.toFixed(2) : round < 100 ? num.toFixed(1) : round
+    return `${num} ${'KMGTPEZY'[i-1]}B`
+}
+
+humanFileSize(0)          // "0 B"
+humanFileSize(1023)       // "1023 B"
+humanFileSize(1024)       // "1.00 KB"
+humanFileSize(10240)      // "10.0 KB"
+humanFileSize(102400)     // "100 KB"
+humanFileSize(1024000)    // "1000 KB"
+humanFileSize(12345678)   // "11.8 MB"
+humanFileSize(1234567890) // "1.15 GB"
+
 ```
 
 **[⬆ back to top](#table-of-contents)**
