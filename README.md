@@ -27,7 +27,7 @@ Here are some commonly used functions you may use throughout the project
 ```js
 function formatFileSize(bytes, decimalPoint) {
     if (bytes == 0) return '0 Bytes'
-    let k = 1000,
+    let k = 1024,
         dm = decimalPoint || 2,
         sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         i = Math.floor(Math.log(bytes) / Math.log(k))
@@ -48,7 +48,7 @@ function humanFileSize(size) {
     let num = (size / Math.pow(1024, i))
     let round = Math.round(num)
     num = round < 10 ? num.toFixed(2) : round < 100 ? num.toFixed(1) : round
-    return `${num} ${'KMGTPEZY'[i-1]}B`
+    return `${num} ${'KMGTPEZY'[i - 1]}B`
 }
 
 humanFileSize(0)          // "0 B"
@@ -59,6 +59,60 @@ humanFileSize(102400)     // "100 KB"
 humanFileSize(1024000)    // "1000 KB"
 humanFileSize(12345678)   // "11.8 MB"
 humanFileSize(1234567890) // "1.15 GB"
+
+
+
+// File size parser
+const fileSizeParser = (input) => {
+    try {
+        if (input == undefined || input.length <= 0 || input.trim() == '')
+            throw new Error("Parameter is required")
+
+        let input_size = parseFloat(input)
+        let input_unit = input.toString().split('').filter(item => isNaN(item) == true)
+            .join('').replace(/\./g, '').trim()
+
+        if (isNaN(input_size))
+            throw new Error('Invalid parameter')
+
+        let unitBases = [
+            [["b", "bit", "bits"], 1 / 8],
+            [["B", "Byte", "Bytes", "bytes"], 1],
+            [["Kb"], 128],
+            [["k", "K", "kb", "KB", "KiB", "Ki", "ki"], 1024],
+            [["Mb"], 131072],
+            [["m", "M", "mb", "MB", "MiB", "Mi", "mi"], Math.pow(1024, 2)],
+            [["Gb"], 1.342e+8],
+            [["g", "G", "gb", "GB", "GiB", "Gi", "gi"], Math.pow(1024, 3)],
+            [["Tb"], 1.374e+11],
+            [["t", "T", "tb", "TB", "TiB", "Ti", "ti"], Math.pow(1024, 4)],
+            [["Pb"], 1.407e+14],
+            [["p", "P", "pb", "PB", "PiB", "Pi", "pi"], Math.pow(1024, 5)],
+            [["Eb"], 1.441e+17],
+            [["e", "E", "eb", "EB", "EiB", "Ei", "ei"], Math.pow(1024, 6)]
+        ]
+
+        for (const units of unitBases) {
+            if (units[0].includes(input_unit)) {
+                return input_size * units[1]
+            }
+        }
+
+        throw new Error('Invalid parameter')
+    } catch (error) {
+        return error
+    }
+}
+
+console.log(fileSizeParser('2 Bytes')) // 2
+console.log(fileSizeParser('2.23 KB')) // 2283.52
+console.log(fileSizeParser('1.22 MB')) // 1279262.72
+console.log(fileSizeParser('4.25GB')) // 4563402752
+console.log(fileSizeParser('1.5TB')) // 4563402752
+// console.log(fileSizeParser('')) // Error => Parameter is required
+// console.log(fileSizeParser('MB')) // Error => Invalid parameter
+
+
 
 ```
 
@@ -328,7 +382,6 @@ getUnixTime(new Date.now()) // 1646319520
 getUnixTime() // 1646319559
 
 
-
 // Unix time to date 
 const unixTimeToDate = (unix_time) => {
     return new Date(Math.floor(unix_time * 1000))
@@ -436,14 +489,13 @@ const copyToClipboard = (text) => {
 copyToClipboard('Copy me') // "Copy me" successfully copied
 ```
 
-
 **[⬆ back to top](#table-of-contents)**
 
-## Limit string to character 
+## Limit string to character
 
 ```js
-const limitStringToCharacter  = ({str, limit = 20}) => {
-    if (str.length >= limit) return  str.substring(0, limit) + '...'
+const limitStringToCharacter = ({str, limit = 20}) => {
+    if (str.length >= limit) return str.substring(0, limit) + '...'
     return str
 }
 
