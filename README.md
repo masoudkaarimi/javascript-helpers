@@ -63,39 +63,52 @@ humanFileSize(1234567890) // "1.15 GB"
 
 
 // File size parser
-const fileSizeParser = (input) => {
+const fileSizeParser = (fileSize) => {
     try {
-        if (input == undefined || input.length <= 0 || input.trim() == '')
+        if (fileSize == undefined)
             throw new Error("Parameter is required")
 
-        let input_size = parseFloat(input)
-        let input_unit = input.toString().split('').filter(item => isNaN(item) == true)
-            .join('').replace(/\./g, '').trim()
+        if (typeof fileSize === "string") {
+            if (fileSize == undefined || fileSize.length <= 0 || fileSize.trim() == '')
+                throw new Error("Parameter is required")
 
-        if (isNaN(input_size))
-            throw new Error('Invalid parameter')
+            let size = parseFloat(fileSize)
+            let unit = fileSize.toString().split('').filter(item => isNaN(item) == true)
+                .join('').replace(/\./g, '').trim()
 
-        let unitBases = [
-            [["b", "bit", "bits"], 1 / 8],
-            [["B", "Byte", "Bytes", "bytes"], 1],
-            [["Kb"], 128],
-            [["k", "K", "kb", "KB", "KiB", "Ki", "ki"], 1024],
-            [["Mb"], 131072],
-            [["m", "M", "mb", "MB", "MiB", "Mi", "mi"], Math.pow(1024, 2)],
-            [["Gb"], 1.342e+8],
-            [["g", "G", "gb", "GB", "GiB", "Gi", "gi"], Math.pow(1024, 3)],
-            [["Tb"], 1.374e+11],
-            [["t", "T", "tb", "TB", "TiB", "Ti", "ti"], Math.pow(1024, 4)],
-            [["Pb"], 1.407e+14],
-            [["p", "P", "pb", "PB", "PiB", "Pi", "pi"], Math.pow(1024, 5)],
-            [["Eb"], 1.441e+17],
-            [["e", "E", "eb", "EB", "EiB", "Ei", "ei"], Math.pow(1024, 6)]
-        ]
+            if (isNaN(size))
+                throw new Error('Invalid parameter')
 
-        for (const units of unitBases) {
-            if (units[0].includes(input_unit)) {
-                return input_size * units[1]
+            let unitBases = [
+                [["b", "bit", "bits"], 1 / 8],
+                [["B", "Byte", "Bytes", "bytes"], 1],
+                [["Kb"], 128],
+                [["k", "K", "kb", "KB", "KiB", "Ki", "ki"], 1024],
+                [["Mb"], 131072],
+                [["m", "M", "mb", "MB", "MiB", "Mi", "mi"], Math.pow(1024, 2)],
+                [["Gb"], 1.342e+8],
+                [["g", "G", "gb", "GB", "GiB", "Gi", "gi"], Math.pow(1024, 3)],
+                [["Tb"], 1.374e+11],
+                [["t", "T", "tb", "TB", "TiB", "Ti", "ti"], Math.pow(1024, 4)],
+                [["Pb"], 1.407e+14],
+                [["p", "P", "pb", "PB", "PiB", "Pi", "pi"], Math.pow(1024, 5)],
+                [["Eb"], 1.441e+17],
+                [["e", "E", "eb", "EB", "EiB", "Ei", "ei"], Math.pow(1024, 6)]
+            ]
+
+            for (const units of unitBases) {
+                if (units[0].includes(unit)) {
+                    return size * units[1]
+                }
             }
+
+        } else if (typeof fileSize === "number") {
+            if (fileSize == 0) return '0 Bytes'
+            let k = 1024,
+                dm = 2,
+                sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+                i = Math.floor(Math.log(fileSize) / Math.log(k))
+            return parseFloat((fileSize / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
         }
 
         throw new Error('Invalid parameter')
