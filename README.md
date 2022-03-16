@@ -4,7 +4,7 @@ Here are some commonly used functions you may use throughout the project
 
 # Table of contents
 
-- [Format file size](#format-file-size)
+- [File size parser](#file-size-parser)
 - [Number separator by comma](#number-separator-by-comma)
 - [Convert Enter (\n) characters to lists](#convert-enter-n-characters-to-lists)
 - [Timer](#timer)
@@ -22,54 +22,17 @@ Here are some commonly used functions you may use throughout the project
 - [Copy to clipboard](#copy-to-clipboard)
 - [Limit string to character](#limit-string-to-character)
 
-## Format file size
+## File size parser
 
 ```js
-function formatFileSize(bytes, decimalPoint) {
-    if (bytes == 0) return '0 Bytes'
-    let k = 1024,
-        dm = decimalPoint || 2,
-        sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-        i = Math.floor(Math.log(bytes) / Math.log(k))
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
-}
-
-console.log(formatFileSize(2)) // 2 Bytes
-console.log(formatFileSize(2234)) // 2.23 KB
-console.log(formatFileSize(1220000)) // 1.22 MB
-console.log(formatFileSize(4250000000)) // 4.25 GB
-console.log(formatFileSize(1500000000000)) // 1.5 TB
-
-// Or
-
-function humanFileSize(size) {
-    if (size < 1024) return size + ' B'
-    let i = Math.floor(Math.log(size) / Math.log(1024))
-    let num = (size / Math.pow(1024, i))
-    let round = Math.round(num)
-    num = round < 10 ? num.toFixed(2) : round < 100 ? num.toFixed(1) : round
-    return `${num} ${'KMGTPEZY'[i - 1]}B`
-}
-
-humanFileSize(0)          // "0 B"
-humanFileSize(1023)       // "1023 B"
-humanFileSize(1024)       // "1.00 KB"
-humanFileSize(10240)      // "10.0 KB"
-humanFileSize(102400)     // "100 KB"
-humanFileSize(1024000)    // "1000 KB"
-humanFileSize(12345678)   // "11.8 MB"
-humanFileSize(1234567890) // "1.15 GB"
-
-
-
-// File size parser
-const fileSizeParser = (fileSize) => {
+const fileSizeParser = (fileSize, decimalPoint) => {
     try {
         if (fileSize == undefined)
             throw new Error("Parameter is required")
 
+        // converts human-readable files size to bytes
         if (typeof fileSize === "string") {
-            if (fileSize == undefined || fileSize.length <= 0 || fileSize.trim() == '')
+            if (fileSize.length <= 0 || fileSize.trim() == '')
                 throw new Error("Parameter is required")
 
             let size = parseFloat(fileSize)
@@ -102,13 +65,15 @@ const fileSizeParser = (fileSize) => {
                 }
             }
 
+            // converts bytes to human-readable files size
         } else if (typeof fileSize === "number") {
-            if (fileSize == 0) return '0 Bytes'
-            let k = 1024,
-                dm = 2,
-                sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-                i = Math.floor(Math.log(fileSize) / Math.log(k))
-            return parseFloat((fileSize / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
+            if (fileSize === 0) return '0 Bytes'
+
+            let base = 1024
+            decimalPoint = decimalPoint || 2
+            let units = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+            let quotient = Math.floor(Math.log(fileSize) / Math.log(base))
+            return `${parseFloat((fileSize / Math.pow(base, quotient)).toFixed(decimalPoint))} ${units[quotient]}`
         }
 
         throw new Error('Invalid parameter')
@@ -117,15 +82,41 @@ const fileSizeParser = (fileSize) => {
     }
 }
 
-console.log(fileSizeParser('2 Bytes')) // 2
-console.log(fileSizeParser('2.23 KB')) // 2283.52
-console.log(fileSizeParser('1.22 MB')) // 1279262.72
-console.log(fileSizeParser('4.25GB')) // 4563402752
-console.log(fileSizeParser('1.5TB')) // 4563402752
-// console.log(fileSizeParser('')) // Error => Parameter is required
-// console.log(fileSizeParser('MB')) // Error => Invalid parameter
+// Errors
+fileSizeParser('') // Error => Parameter is required
+fileSizeParser('MB') // Error => Invalid parameter
 
+// converts human-readable files size to bytes 
+fileSizeParser('2 Bytes') // 2
+fileSizeParser('2.23 KB') // 2283.52
+fileSizeParser('1.22 MB') // 1279262.72
+fileSizeParser('4.25GB') // 4563402752
+fileSizeParser('1.5TB') // 1649267441664
 
+// converts bytes to human-readable files size
+fileSizeParser(2) // 2 Bytes
+fileSizeParser(2283.52) // 2.23 KB
+fileSizeParser(1279262.72) // 1.22 MB
+fileSizeParser(4563402752) // 4.25 GB
+fileSizeParser(1649267441664) // 1.5 TB
+
+// Performs conversion with power parameters
+fileSizeParser(1024) // 1 KB
+fileSizeParser(2048) // 2 KB
+fileSizeParser(2 ** 0) // 1 Bytes
+fileSizeParser(2 ** 1) // 2 Bytes
+fileSizeParser(2 ** 10) // 1 KB
+fileSizeParser(2 ** 20) // 1 MB
+fileSizeParser(2 ** 30) // 1 GB
+fileSizeParser(2 ** 40) // 1 TB
+fileSizeParser(2 ** 50) // 1 PB
+fileSizeParser(2 ** 60) // 1 EB
+fileSizeParser(2 ** 70) // 1 ZB
+fileSizeParser(2 ** 80) // 1 YB
+
+// Custom decimal point
+fileSizeParser(2 ** 2.5, 10) // 5.6568542495 Bytes
+fileSizeParser(20 ** 20, 4) // 86.7362 YB
 
 ```
 
