@@ -19,6 +19,7 @@ Here are some commonly used functions you may use throughout the project
 - [Reverse-string](#reverse-string)
 - [Random HEX code generation](#random-hex-code-generation)
 - [Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
+- [Random number generate between maximum and minimum](#random-number-generate-between-maximum-and-minimum)
 - [Copy to clipboard](#copy-to-clipboard)
 - [Limit string to character](#limit-string-to-character)
 
