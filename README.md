@@ -13,11 +13,11 @@ Here are some commonly used functions you may use throughout the project
 - [Date validity test](#date-validity-test)
 - [Find the number of days between two dates](#find-the-number-of-days-between-two-dates)
 - [Unix time](#unix-time)
-- [Random HEX code generation](#random-hex-code-generation)
 - [The average of numbers calculation](#the-average-of-numbers-calculation)
 - [Get selected text](#get-selected-text)
 - [Is prime numbers](#is-prime-numbers)
 - [Reverse-string](#reverse-string)
+- [Random HEX code generation](#random-hex-code-generation)
 - [Random PIN generator (Personal Identification Number)](#random-pin-generator-personal-identification-number)
 - [Copy to clipboard](#copy-to-clipboard)
 - [Limit string to character](#limit-string-to-character)
@@ -396,16 +396,6 @@ unixTimeToDate(1646319559) // Thu Mar 03 2022 18:29:19 GMT+0330 (Iran Standard T
 
 **[⬆ back to top](#table-of-contents)**
 
-## Random HEX code generation
-
-```js
-const randomHEXCode = () => `#${Math.floor(Math.random() * 0xfffffff).toString(16).padEnd(6, '0')}`
-
-randomHEXCode() // #...
-```
-
-**[⬆ back to top](#table-of-contents)**
-
 ## The average of numbers calculation
 
 ```js
@@ -459,6 +449,16 @@ console.log(chars) // duosam
 
 **[⬆ back to top](#table-of-contents)**
 
+## Random HEX code generation
+
+```js
+const randomHEXCode = () => `#${Math.floor(Math.random() * 0xfffffff).toString(16).padEnd(6, '0')}`
+
+randomHEXCode() // #...
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 ## Random PIN generator (Personal Identification Number)
 
 ```js
@@ -473,6 +473,18 @@ const randomPinNumber = length => {
 }
 
 randomPinNumber(6) // 685837
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Random number generate between maximum and minimum
+
+```js
+const randomNumber = ({max, min}) => {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+randomNumber({max: 999, min: 99}) // 474
 ```
 
 **[⬆ back to top](#table-of-contents)**
